@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Realizar Venda</title>
+    <link rel="stylesheet" type="text/css"  href="" />
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: #9eb9cc; /* Azul claro */
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            background-color: #1e5e8b; /* Azul escuro */
+            color: white;
+            padding: 15px;
+            margin: 0;
+            border-radius: 5px;
+        }
+
+        form {
+            background-color: white; /* Fundo branco para o formulário */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            margin: 10px 0 5px;
+            color: #1e5e8b; /* Azul escuro */
+        }
+
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #6f94c6; /* Azul médio */
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #6f94c6; /* Azul médio */
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #1e5e8b; /* Azul escuro em hover */
+        }
+
+        a {
+            color: #6f94c6; /* Azul médio */
+            font-size: 16px;
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Realizar Venda</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="cliente">Cliente:</label>
+        <select id="cliente" name="cliente">
+            {% for cliente in clientes %}
+            <option value="{{ cliente.idcli }}">{{ cliente.nomecli }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="produto">Produto:</label>
+        <select id="produto" name="produto">
+            {% for produto in produtos %}
+            <option value="{{ produto.idprod }}">{{ produto.descprod }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade" name="quantidade" min="1">
+        <br>
+        <button type="submit">Realizar Venda</button>
+    </form>
+    <a href="{% url 'home' %}">Voltar para Home</a>
+</body>
+</html>

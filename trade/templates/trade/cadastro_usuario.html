@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="">
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: #9eb9cc; /* Azul claro */
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            color: #ffffff; /* Cor do texto principal */
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 36px;
+            background-color: #1e5e8b; /* Azul escuro */
+            color: white;
+            padding: 20px;
+            margin: 0;
+            border-radius: 5px;
+        }
+
+        a {
+            color: #6f94c6; /* Azul médio */
+            font-size: 16px;
+            text-decoration: none;
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            background-color: #6f94c6; /* Azul médio */
+            color: white;
+            width: 20%;
+            height: 50px;
+            font-size: 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #004aad; /* Azul escuro em hover */
+        }
+
+        #caixa {
+            background-color: #1e5e8b; /* Azul escuro */
+            margin: 20px auto; /* Centraliza horizontalmente */
+            width: 50%; /* Largura do container */
+            max-width: 600px; /* Largura máxima */
+            height: auto; /* Ajusta altura conforme o conteúdo */
+            padding: 20px;
+            border-radius: 9px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+        }
+
+        .contError {
+            margin: 10px 0;
+            color: #000000; /* Cor dos erros */
+        }
+
+        .errors {
+            background-color: #e2f4fb; /* Fundo claro para erros */
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .messages {
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1e5e8b; /* Azul escuro */
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000; /* Garante que a mensagem fique acima dos outros elementos */
+            max-width: 80%;
+        }
+
+        .contMsg {
+            margin: 10px 0;
+        }
+
+        .messages h1, .messages h3 {
+            margin: 10px 0;
+        }
+
+        .messages h1 {
+            font-size: 24px;
+        }
+
+        .messages h3 {
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            {% if messages %}
+                setTimeout(function() {
+                    location.reload();
+                }, 4000);
+            {% endif %}
+        };
+    </script>
+</head>
+<body>
+    <div class="containerP">
+        <div id="topo">
+           <h1>Cadastro de Usuário</h1>
+        </div>
+        <div id="caixa">
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <br>
+                    {{ field.label_tag }} {{ field }}
+                    <br>
+                    {% if field.errors %}
+                        <br>
+                        <div class="contError">
+                            <div class="errors">
+                                {{ field.errors }}
+                                <br>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <br>
+                <button class="boto" type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="contMsg">
+                    <h1>{{ message }}</h1>
+                    <h3>Agora o usuário cadastrado pode navegar pelo HUD da Trade.Agile à vontade, basta realizar login.</h3>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</body>
+</html>

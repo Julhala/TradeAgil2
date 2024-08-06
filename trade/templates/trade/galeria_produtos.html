@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Galeria de Produtos</title>
+    <style>
+        body {
+            width: auto;
+            height: auto;
+            background-color: #9eb9cc; /* Azul claro */
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 20px;
+            background-color: #1e5e8b; /* Azul escuro */
+            color: white;
+            padding: 15px;
+            margin: 0;
+            border-radius: 5px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 colunas de tamanho igual */
+            gap: 40px; /* Espaçamento entre as imagens */
+            max-width: 1100px; /* Largura máxima da galeria */
+            margin: 20px 0;
+        }
+
+        .gallery img {
+            width: 200px; /* Largura total da coluna */
+            height: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        li {
+            background-color: white; /* Fundo branco para os itens da lista */
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            width: 300px; /* Largura fixa para os itens da lista */
+        }
+
+        h2 {
+            color: #1e5e8b; /* Azul escuro */
+            margin-top: 0;
+        }
+
+        p {
+            color: #333; /* Cor do texto dos detalhes dos produtos */
+            margin: 5px 0;
+        }
+
+        a {
+            color: #6f94c6; /* Azul médio */
+            font-size: 16px;
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: white; /* Fundo branco para o link */
+            border: 1px solid #6f94c6; /* Borda azul médio para o link */
+        }
+
+        a:hover {
+            background-color: #6f94c6; /* Azul médio em hover */
+            color: white; /* Texto branco em hover */
+            text-decoration: none;
+        }
+        img {
+            height: 374px;
+            width: 374px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Galeria de Produtos</h1>
+    <div class="gallery">
+        <img class="galleryy" src="https://lh3.googleusercontent.com/LZE4k4QcrJltB2sopjmQz2MEmcvRzcWO2KEYGOEzaUddqcgg1LCuFYL0TmLzWt7DCAyJu8OY3FMDMKyzslrsU5bNs--g0U_fTpiIgcSQvXnBqABK6YnMFnMygk4XVUO4QA=w1280" alt="Produto 1"/>
+        <img src="https://m.media-amazon.com/images/I/61HyBrw9hdL._AC_UF894,1000_QL80_.jpg" alt="Produto 2"/>
+        <img src="https://optisom.vteximg.com.br/arquivos/ids/166311-550-550/Camera-Instantanea-Fujifilm-Instax-Mini-11-Azul--Sky-Blue-.jpg?v=637300131092800000" alt="Produto 3"/>
+        <img src="https://www.praiabella.com.br/cdn/shop/files/S521e5f8a27f14e97a328bb4442596697n.webp?v=1708170995" alt="Produto 4"/>
+        <img src="https://ae-pic-a1.aliexpress-media.com/kf/S4e8e89477e10438981af28c7309de0dcf.jpg_640x640Q90.jpg_.webp" alt="Produto 5"/>
+        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ6ygnZ1_YFEUsBun3o0QfUmJIHOHMt1o_ztLxhZ8HbZ1eEy6mi" alt="Produto 6"/>
+    </div>
+
+    <ul>
+        {% for produto in produtos %}
+        <li>
+            <h2>{{ produto.descprod }}</h2>
+            <p>Código: {{ produto.codiprod }}</p>
+            <p>Valor: R$ {{ produto.valorprod }}</p>
+            <p>Situação: {{ produto.situprod }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'home' %}">Voltar para Home</a>
+</body>
+</html>
